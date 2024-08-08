@@ -1,5 +1,5 @@
 {
-    "name": "elvish-highlight",
+    "name": "Elvish highlighting support",
     "component": true,
     "authors": "Elvish developers and contributors",
     "license_url": "https://github.com/elves/discourse-highlight/blob/main/LICENSE",
