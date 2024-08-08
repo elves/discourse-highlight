@@ -2,7 +2,6 @@ export function elvish(hljs) {
   return {
     name: 'Elvish',
     contains: [
-      hljs.HASH_COMMENT_MODE,
       {
         scope: 'string',
         begin: '"',
@@ -13,6 +12,15 @@ export function elvish(hljs) {
         scope: 'string',
         begin: "'",
         end: "'",
+      },
+      hljs.HASH_COMMENT_MODE,
+      {
+        scope: 'variable',
+        begin: '\\$[\\w\\d_:~-]+',
+      },
+      {
+        scope: 'operator',
+        begin: '[*?|&;<>()\\[\\]{}]',
       },
     ],
   };
