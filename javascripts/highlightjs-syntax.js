@@ -1,6 +1,6 @@
 export function elvish(hljs) {
   const cmdStarter = /(^|\{ |\{\t|\(|\||\;)[ \t]*/;
-  const cmdNameEnder = /[ \t)}<>;|&]/;
+  const cmdNameEnder = /($|[ \t)}<>;|&])/;
   const ctrlKeywordStarter = /\}[ \t]+/;
   return {
     name: 'Elvish',
@@ -109,6 +109,8 @@ export function elvishTranscript(hljs) {
       {
         begin: /^[~/][^ ]*> /,
         end: /^([^ ]| [^ ]|  [^ ])/,
+        excludeBegin: true,
+        excludeEnd: true,
         subLanguage: 'elvish',
       }
     ],
