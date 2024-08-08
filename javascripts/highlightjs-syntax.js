@@ -66,7 +66,7 @@ export function elvish(hljs) {
         ],
         beginScope: {
           1: 'operator',
-          2: 'builtin_in',
+          2: 'built_in',
           3: 'operator',
         }
       },
