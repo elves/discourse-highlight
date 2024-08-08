@@ -1,29 +1,35 @@
 export function elvish(hljs) {
+  const operator = {
+    scope: 'operator',
+    begin: '[*?|&;<>()\\[\\]{}]',
+  };
+
   return {
     name: 'Elvish',
     contains: [
       {
         scope: 'string',
-        begin: '"',
-        end: '"',
-        contains: [{begin: '\\\\.'}],
+        begin: /"/,
+        end: /"/,
+        contains: [{begin: /\\./}],
       },
       {
         scope: 'string',
-        begin: "'",
-        end: "'",
+        begin: /'/,
+        end: /'/,
       },
       hljs.HASH_COMMENT_MODE,
       {
         scope: 'variable',
-        begin: '\\$[\\w\\d_:~-]*',
+        begin: /\$[\w\d_:~-]*/,
       },
       // Assignment commands
       {
         scope: '_assign_cmd',
-        begin: '(^|\\{\\s|\\(|\\||\\;)\\s*(var|set|tmp|with|del)\\s',
-        end: '(=|$)',
+        begin: /(?=(^|\{ |\{\t|\(|\||\;)[ \t]*(var|set|tmp|with|del)[ \t])/,
+        end: /=|$/,
         contains: [
+          operator,
           {
             scope: 'keyword',
             begin: 'var|set|tmp|with|del',
@@ -34,10 +40,7 @@ export function elvish(hljs) {
           },
         ],
       },
-      {
-        scope: 'operator',
-        begin: '[*?|&;<>()\\[\\]{}]',
-      },
+      operator,
     ],
   };
 }
