@@ -1,9 +1,4 @@
 export function elvish(hljs) {
-  const operator = {
-    scope: 'operator',
-    begin: '[*?|&;<>()\\[\\]{}]',
-  };
-
   return {
     name: 'Elvish',
     contains: [
@@ -21,26 +16,25 @@ export function elvish(hljs) {
       hljs.HASH_COMMENT_MODE,
       {
         scope: 'variable',
-        begin: /\$[\w\d_:~-]*/,
+        match: /\$[\w\d_:~-]*/,
       },
       // Assignment commands
       {
-        scope: '_assign_cmd',
-        begin: /(?=(^|\{ |\{\t|\(|\||\;)[ \t]*(var|set|tmp|with|del)[ \t])/,
-        end: /=|$/,
-        contains: [
-          operator,
-          {
-            scope: 'keyword',
-            begin: 'var|set|tmp|with|del',
-          },
-          {
-            scope: 'variable',
-            begin: '\\s+[\\w\\d_:~-]+',
-          },
+        begin: [
+          /(^|\{ |\{\t|\(|\||\;)[ \t]*/,
+          /(var|set|tmp|with|del)/,
+          /([ \t]+[\w\d_:~-]+)+/,
         ],
+        beginScope: {
+          1: 'operator',
+          2: 'keyword',
+          3: 'variable',
+        },
       },
-      operator,
+      {
+        scope: 'operator',
+        begin: '[*?|&;<>()\\[\\]{}]',
+      },
     ],
   };
 }
