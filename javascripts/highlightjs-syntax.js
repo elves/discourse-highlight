@@ -101,3 +101,16 @@ export function elvish(hljs) {
     ],
   };
 }
+
+export function elvishTranscript(hljs) {
+  return {
+    name: 'Elvish transcript',
+    contains: [
+      {
+        begin: /^[~/][^ ]*> /,
+        end: /^([^ ]| [^ ]|  [^ ])/,
+        subLanguage: 'elvish',
+      }
+    ],
+  };
+}

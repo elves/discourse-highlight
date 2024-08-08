@@ -2,8 +2,9 @@
 // javascript/ directory, but it will only execute those living in a
 // subdirectory whose name is "initializers" or "api-initializers".
 import { apiInitializer } from 'discourse/lib/api';
-import { elvish } from '../highlightjs-syntax';
+import { elvish, elvishTranscript } from '../highlightjs-syntax';
 
 export default apiInitializer('0.8', (api) => {
   api.registerHighlightJSLanguage('elvish', elvish);
+  api.registerHighlightJSLanguage('elvish-transcript', elvishTranscript);
 });
