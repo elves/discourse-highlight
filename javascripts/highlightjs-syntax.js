@@ -108,7 +108,7 @@ export function elvishTranscript(hljs) {
     contains: [
       {
         begin: /^[~/][^ ]*> /,
-        end: /^([^ ]| [^ ]|  [^ ])/,
+        end: /^(?!   )/,
         excludeBegin: true,
         excludeEnd: true,
         subLanguage: 'elvish',
